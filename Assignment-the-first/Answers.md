@@ -12,8 +12,9 @@
 
 2. Per-base NT distribution
     1. Use markdown to insert your 4 histograms here.
-    2. **YOUR ANSWER HERE**
-    3. **YOUR ANSWER HERE**
+    2. I used this website for my answer justification: https://www.illumina.com/Documents/products/technotes/technote_Q         Scores.pdf#:~:text=Illumina%20sequencing%20Q%20scores%20are%20highly%20accurate.%20This,MiSeq%20vs%20HiSeq%202000E.coli%20K12%20MG1655%20Data%20Comparison
+       Q scores can reveal how much of the data from a given run is usable in a resequencing or assembly experiment. Sequencing data with lower quality scores can result in significant portion of the reads being unusable, resulting in wasted time and expense.
+    4. **YOUR ANSWER HERE**
     
 ## Part 2
 1. Define the problem
