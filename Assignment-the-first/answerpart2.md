@@ -3,8 +3,10 @@
 a) Unknown/mismatch/N's/low quality (2 files- read 1 and read 2): A file where the index is unknown and has indexes that are mismatched and have N's in the sequence.
 b) Index hopping (2 files -read 1 and read2): If there is index hopping i.e indexes are known but are mismatch to each other
 c) Matched files (48 files - read 1 and read2): These files have matched indexes i.e both index 1 and index 2 are known and reverse complementary to each other.
-3.  DNA = 'ACGT'
+3.  DNA = 'ACGTCC'
 def reverse_complementary(str) ->str:
+
     '''Takes a string of nucleotide and swaps A for T, T for A, G for C and C for G by using numpy to reverse the string'''
-    Reverse_DNA = reverse complements ACGT to TGCA 
+    
+    Reverse_DNA = reverse complements ACGTCC to GGACGT 
     return Reverse_DNA
