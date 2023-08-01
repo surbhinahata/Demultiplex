@@ -2,6 +2,8 @@
 
 ## Part 1
 1. Be sure to upload your Python script. Provide a link to it here:
+https://github.com/surbhinahata/Demultiplex/blob/master/Assignment-the-first/q_scoreavg.py
+https://github.com/surbhinahata/Demultiplex/blob/master/Assignment-the-first/q_scoreavg.batch
 
 | File name | label | Read length | Phred encoding |
 |---|---|---|---|
