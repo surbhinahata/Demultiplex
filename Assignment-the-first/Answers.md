@@ -12,9 +12,10 @@
 
 2. Per-base NT distribution
     1. Use markdown to insert your 4 histograms here.
-    2. I used this website for my answer justification: https://www.illumina.com/Documents/products/technotes/technote_Q         Scores.pdf#:~:text=Illumina%20sequencing%20Q%20scores%20are%20highly%20accurate.%20This,MiSeq%20vs%20HiSeq%202000E.coli%20K12%20MG1655%20Data%20Comparison
-       Q scores can reveal how much of the data from a given run is usable in a resequencing or assembly experiment. Sequencing data with lower quality scores can result in significant portion of the reads being unusable, resulting in wasted time and expense.
-    4. **YOUR ANSWER HERE**
+    2. Q scores can reveal how much of the data from a given run is usable in resequencing or assembly experiment. Sequencing data with lower quality scores can result in significant portion of the reads being unusable, resulting in wasted time and expense. When sequencing quality reaches Q30, virtually all of the reads will be perfect, with no errors or ambiguities. This is why Q30 is considered a benchmark for quality in next-generation sequencing (NGS) source - https://www.illumina.com/science/technology/next-generation-sequencing/plan-experiments/quality-scores.html Hence cutoff should be at Q30 for the biological sequencing read. However, 
+    4. Read 2/index 1: 3976613
+       zcat /projects/bgmp/shared/2017_sequencing/1294_S1_L008_R2_001.fastq.gz | sed -n '2~4p' | grep -E "(N)" | wc -l
+       Read 3/index 2: 
     
 ## Part 2
 1. Define the problem
