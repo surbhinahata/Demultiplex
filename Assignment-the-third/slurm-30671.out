@@ -1,0 +1,25 @@
+5
+{'GATCTTGC': 1, 'GATCAAGG': 1}
+	Command being timed: "./Atthird_code.py -bf1 /projects/bgmp/surbhin/bioinfo/Bi622/Demultiplex/Assignment-the-third/read1test.fastq -bf2 /projects/bgmp/surbhin/bioinfo/Bi622/Demultiplex/Assignment-the-third/read2test.fastq -if1 /projects/bgmp/surbhin/bioinfo/Bi622/Demultiplex/Assignment-the-third/index1test.fastq -if2 /projects/bgmp/surbhin/bioinfo/Bi622/Demultiplex/Assignment-the-third/index2test.fastq -u1 unknownread1.fastq -u2 unknownread2.fastq -h1 indexhoppedread1.fastq -h2 indexhoppedread2.fastq -c 1"
+	User time (seconds): 0.34
+	System time (seconds): 0.07
+	Percent of CPU this job got: 75%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.55
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 51348
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 11305
+	Voluntary context switches: 661
+	Involuntary context switches: 1
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 0
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

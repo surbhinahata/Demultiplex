@@ -1,0 +1,25 @@
+363246735
+{'TACCGGAT': 76363857, 'CTCTGGAT': 34976387, 'AGAGTCCA': 11316780, 'GTAGCGTA': 8119243, 'ATCATGCG': 10087503, 'AACAGCGA': 8872034, 'TCGACAAG': 3853350, 'TGTTCCGT': 15733007, 'TCGAGAGT': 11741547, 'CGGTAATC': 5064906, 'TAGCCATG': 10629633, 'TCTTCGAC': 42094112, 'CTAGCTCA': 17332036, 'TATGGCAC': 11184304, 'ACGATCAG': 7942853, 'GATCTTGC': 3641072, 'AGGATAGC': 8673180, 'CACTTCAC': 4191388, 'GCTACTCT': 7416557, 'ATCGTGGT': 6887592, 'CGATCGAT': 5604966, 'GTCCTAAG': 8830276, 'GATCAAGG': 6587100, 'TCGGATTC': 4611350}
+	Command being timed: "./Atthird_code.py -bf1 /projects/bgmp/shared/2017_sequencing/1294_S1_L008_R1_001.fastq.gz -bf2 /projects/bgmp/shared/2017_sequencing/1294_S1_L008_R4_001.fastq.gz -if1 /projects/bgmp/shared/2017_sequencing/1294_S1_L008_R2_001.fastq.gz -if2 /projects/bgmp/shared/2017_sequencing/1294_S1_L008_R3_001.fastq.gz -u1 unknownread1.fastq -u2 unknownread2.fastq -h1 indexhoppedread1.fastq -h2 indexhoppedread2.fastq -c 1"
+	User time (seconds): 2930.25
+	System time (seconds): 115.05
+	Percent of CPU this job got: 80%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 1:02:39
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 286788
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 48257
+	Voluntary context switches: 48449
+	Involuntary context switches: 24385
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 0
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
