@@ -1,0 +1,116 @@
+######################################################################################
+Demultiplexing assignment the first - part1: Quality score distribution per nucleotide
+######################################################################################
+
+7/31/22
+
+1. Working on talaps and don't want to work on login node that's why got an interactive node using this command: srun --account=bgmp --partition=compute --time=1:00:00 --pty bash
+
+2. Initial file exploration using the following command:
+Phred encoding used is phred-33 and I made an educated guess based on the reading here https://people.duke.edu/~ccc14/duke-hts-2018/bioinformatics/quality_scores.html Looks like 
+the # symbol is not found in phred-64 (and it doesn't have numbers, alphabets can be lower case which is not the case in Phred+33), hence it is a phred-33 encoding.
+
+read 1/biological read 1/R1:
+a) zcat /projects/bgmp/shared/2017_sequencing/1294_S1_L008_R1_001.fastq.gz | wc -l >> 1452986940 (divide it by 4 to get the number of records)
+b) zcat /projects/bgmp/shared/2017_sequencing/1294_S1_L008_R1_001.fastq.gz | head -20 >> this command shows that its a fastq file with biological reads
+c) zcat /projects/bgmp/shared/2017_sequencing/1294_S1_L008_R1_001.fastq.gz | head -20 | sed -n '2~4p' | wc -L >> 101 is the sequence length
+
+read 2/biological read 2/R4:
+a) zcat /projects/bgmp/shared/2017_sequencing/1294_S1_L008_R4_001.fastq.gz | wc -l >> 1452986940
+b) zcat /projects/bgmp/shared/2017_sequencing/1294_S1_L008_R4_001.fastq.gz | head -20 >> this command shows that its a fastq file with biological reads
+c) zcat /projects/bgmp/shared/2017_sequencing/1294_S1_L008_R4_001.fastq.gz | head -20 | sed -n '2~4p' | wc -L >> 101 is the sequence length
+
+index 1/R2:
+a) zcat /projects/bgmp/shared/2017_sequencing/1294_S1_L008_R2_001.fastq.gz | wc -l >> 1452986940 (divide it by 4 to get the number of records)
+b) zcat /projects/bgmp/shared/2017_sequencing/1294_S1_L008_R2_001.fastq.gz | head -20 >> this command shows that its a fastq file with index1 
+c) zcat /projects/bgmp/shared/2017_sequencing/1294_S1_L008_R2_001.fastq.gz | head -20 | sed -n '2~4p' | wc -L >> to get the sequence length which is 8 for index
+
+Index 2/R3:
+a) zcat /projects/bgmp/shared/2017_sequencing/1294_S1_L008_R3_001.fastq.gz | wc -l >> 1452986940
+b) zcat /projects/bgmp/shared/2017_sequencing/1294_S1_L008_R3_001.fastq.gz | head -20 >> this command shows that its a fastq file with index2 
+c) zcat /projects/bgmp/shared/2017_sequencing/1294_S1_L008_R3_001.fastq.gz | head -20 | sed -n '2~4p' | wc -L >> to get the sequence length which is 8 for index
+
+3. There's something called wrapper text that's used in slurm batch scripts (these texts are basically doing everything that you would do on a command line but inside the batch 
+scirpt). example: activate bgmp_base
+
+4. For the python script, I just copy pasted stuff from PS4 and for batch script I copy pasted Evelyn's code (I was feeling lazy to type it all). 
+Leslie showed that I could just use relative path for my slurm script instead of the absolute path and you can see that in the batch script.
+
+5. scp bioinfo.py surbhin@login.talapas.uoregon.edu:/projects/bgmp/surbhin/bioinfo/Bi622/Demultiplex/Assignment-the-first >> to copy stuff from local computer 
+to talapas. Another unrelated thing is you can activate the base by clicking
+
+6. squeue for:
+a) Index 1 -           23944   compute q_scorea  surbhin  R      10:54      1 n0187
+    slurm out:
+    Command being timed: "./q_scoreavg.py -f /projects/bgmp/shared/2017_sequencing/1294_S1_L008_R2_001.fastq.gz -l 8 -o Index1"
+	User time (seconds): 934.90
+	System time (seconds): 1.12
+	Percent of CPU this job got: 99%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 15:43.94
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 64840
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 12754
+	Voluntary context switches: 2498
+	Involuntary context switches: 2251
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 0
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+b) Index 2 -           23950   compute q_scorea  surbhin  R       0:03      1 n0187
+    slurm out:
+    Command being timed: "./q_scoreavg.py -f /projects/bgmp/shared/2017_sequencing/1294_S1_L008_R3_001.fastq.gz -l 8 -o Index2"
+	User time (seconds): 945.39
+	Percent of CPU this job got: 97%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 16:13.12
+	Exit status: 0
+c) Biological read 1 - 23955   compute q_scorea  surbhin  R       8:16      1 n0187
+d) Biological read 2 - 23960   compute q_scorea  surbhin  R       0:04      1 n0187
+
+7. To look at the index reads with 'Ns' 
+zcat /projects/bgmp/shared/2017_sequencing/1294_S1_L008_R2_001.fastq.gz | sed -n '2~4p' | grep -E "(N)" | wc -l
+
+###################################################################
+Demultiplexing Assignment the third: from psuedocode to actual code
+###################################################################
+
+1. First I tried to create the reverse complementary function to reverse nucleotide in index 2. More simplistic way of reverse_compfunction and uses a lot of lines (hence dictionary is better):
+DNA_seq = "AATTCCGGG"
+def rev_comp(DNA):
+	compstring = ""
+	for nt in DNA_seq:
+		if nt == "A":
+			compstring+="T"
+		elif nt == "T":
+			compstring+="A"
+		elif nt == "G":
+			compstring+="C"
+		elif nt == "C":
+			compstring+="G"
+		elif nt == "N":
+			compstring+="N"
+	return compstring[::-1]
+	
+2. sbatch q_scoreavg.batch squeue - u surbhin 
+Remember to give variable name to the path before the command, I was getting error for 15 mins almost. 
+
+3. I tried creating a prettier looking and organized py script, from now on try to work like that. The files are going to get bigger and bigger. Hence be sure to 
+go one step at a time but if something is not working well you can always create a new script and test small parts in the code, like I made 
+function.py to check the functions that I kept on creating at a later time point. Also I would say usually right your code with functions, it makes
+debugging easy. 
+
+4. I created four test files and worked on them before working on the bigger file. I got lazy and didn't zip my smaller files to check if gzip is 
+workign but for the next time be sure that test files actually match the format and extension (like fastq in this) exactly. 
+
+5. You can see the slurm script for information regarding error or time/memory taken etc etc. Slurm file name slurm-30674.out
+
+
+
